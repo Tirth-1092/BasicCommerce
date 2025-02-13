@@ -24,4 +24,3 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('catalog/', include('catalog.urls')),
 ]
-git remote add origin https://github.com/Tirth-1092/BasicCommerce.git
