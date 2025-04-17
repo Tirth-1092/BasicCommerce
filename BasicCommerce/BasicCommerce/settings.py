@@ -41,14 +41,25 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
-    'rest_framework.authtoken',
+    # 'rest_framework.authtoken',
     'djoser',
     'accounts',
+    'phonenumber_field',
+    'phonenumbers',
     'catalog',
     'django_filters',
+    'corsheaders',
+    'cart',
+    #'orders',
+    'payment',
+    'shipping',
+    'wishlist',
+    'promotions',
+    'orders.apps.OrdersConfig',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -145,17 +156,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
+        #'rest_framework.authentication.TokenAuthentication',
         # 'rest_framework.authentication.SessionAuthentication',
 
     ),
     'DEFAULT_PAGINATION_CLASS': 'catalog.pagination.ProductPagination',
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
-    'DEFAULT_THROTTLE_CLASSES': [
-        'catalog.throttling.ProductListThrottle',
-    ],
+    'DEFAULT_THROTTLE_CLASSES': ['catalog.throttling.ProductListThrottle'],
     'DEFAULT_THROTTLE_RATES': {
         'product_list': '100/day',  # Throttle product list API to 100 requests per day
+        'cart': '100/day',  # You can add custom throttle rates for cart endpoints
+        'order': '100/day', 
+        'payment': '100/day',  # Throttle payment API to 100 requests per day
+
+
     },
 
 }
@@ -169,17 +183,64 @@ DJOSER = {
     'SERIALIZERS': {
         'user_create': 'accounts.serializers.CustomUserCreateSerializer',
         'user': 'accounts.serializers.UserSerializer',
+        'user': 'accounts.serializers.UserProfileSerializer',
+
     },
 }
 
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'AUTH_HEADER_TYPES': ('JWT',),
 }
 AUTH_USER_MODEL = 'accounts.User'
+PHONENUMBER_DEFAULT_REGION = "IN" #Specify a Default Region
 
+#FrontEnd
+CORS_ALLOW_HEADERS = [
+    'sessionid',
+    'content-type',
+    'x-csrftoken',
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'x-requested-with',
+]
 
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:5173',
+]
 
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:5173",
+    "http://localhost:5173",
+]
+CORS_ALLOW_ALL_ORIGINS = True
 
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_METHODS = [
+    "GET",
+    "POST",
+    "PUT",
+    "PATCH",
+    "DELETE",
+    "OPTIONS"
+]
+
+STRIPE_SECRET_KEY = 'sk_test_51R16gP2YuXLFtG78w98eXi5zLEzQvUJQcdHcKOcjCNbEEzBW0AmqcThzCiyLlGO7rMsGstD1u1Uam6IdFQVcJao100uFtn2FVs'
+STRIPE_PUBLIC_KEY = 'pk_test_51R16gP2YuXLFtG78NXPLLieQYu1eKUrSaiz7qSC6Gf25ExrAZqr6GjbBHYj8sRjXqbMRVqyUjh5OBVIkmlc4Ktiu00jyozVLud'
+STRIPE_WEBHOOK_SECRET = 'whsec_5a194b23e2f2e7938059d49dad8853e37b486b15ab1552719fdb3d8412e20185'
+# STRIPE_WEBHOOK_SECRET = 'whsec_7f70465b1e0041eb793229e88d0dbc0b278d5de93c48e6fddde970eaceaf1f0b'
+#mail 
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = False
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'sender22210@gmail.com'
+EMAIL_HOST_PASSWORD = 'ygef nqsv itgv rwnw'
+DEFAULT_FROM_EMAIL = 'sender22210@gmail.com'
+
+DOMAIN = "http://127.0.0.1:8000/payment/"

@@ -1,12 +1,12 @@
-from django.shortcuts import render
-from rest_framework import generics, permissions
 from rest_framework import viewsets, status
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny,IsAuthenticated
 from django.contrib.auth import get_user_model
-from rest_framework.decorators import action
-from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.authentication import JWTAuthentication
 from .serializers import CustomRegistrationSerializer, UserProfileSerializer
+
+# from rest_framework.decorators import action
+# from rest_framework_simplejwt.tokens import RefreshToken
 
 
 User = get_user_model()
@@ -79,10 +79,20 @@ class RegistrationViewSet(viewsets.ModelViewSet):
 #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 #
 
-
-class UserProfileView(generics.RetrieveUpdateAPIView):
+class UserProfileViewSet(viewsets.ModelViewSet):
     serializer_class = UserProfileSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get_object(self):
-        return self.request.user
+        return self.request.user  # Retrieve the authenticated user
+
+    def list(self, request, *args, **kwargs):
+        """ Restrict listing, return only the current user's profile. """
+        serializer = self.get_serializer(self.get_object())
+        return Response(serializer.data)
+
+
+
+
+  

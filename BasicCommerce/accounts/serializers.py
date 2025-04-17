@@ -64,6 +64,9 @@ class UserProfileSerializer(UserSerializer):
     class Meta(UserSerializer.Meta):
         model = User
         fields = ['id', 'username', 'email', 'phone_number', 'role']
-        read_only_fields = ['id', 'username', 'role']  # Users cannot modify these fields
+        read_only_fields = ['id', 'role']  # Users cannot modify these fields
+
+
+
 
 

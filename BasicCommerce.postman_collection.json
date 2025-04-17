@@ -1,0 +1,1127 @@
+{
+	"info": {
+		"_postman_id": "6efa3174-4fc6-40f1-9666-d524bd76e0e6",
+		"name": "BasicCommerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40660060"
+	},
+	"item": [
+		{
+			"name": "accounts",
+			"item": [
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "login",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "e3c249d938466473ececdcadbce381cc9ecd4389",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "username",
+											"value": "rohan",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123+admin",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{auth}}jwt/create/",
+									"host": [
+										"{{auth}}jwt"
+									],
+									"path": [
+										"create",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Registration",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "username",
+											"value": "robin",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123+admin",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "robin@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "phone_number",
+											"value": "1234567891",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "seller",
+											"type": "text"
+										},
+										{
+											"key": "confirm_password",
+											"value": "123+admin",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{auth}}",
+									"host": [
+										"{{auth}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "admin",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{admin}}",
+									"host": [
+										"{{admin}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "profile",
+					"item": [
+						{
+							"name": "Profile",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT  {{jwt_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{profile}}",
+									"host": [
+										"{{profile}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "profile-partial-update",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT  {{jwt_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{profile}}",
+									"host": [
+										"{{profile}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "profile-update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT  {{jwt_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "username",
+											"value": "tirth",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "tirth@gmail.com",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{profile}}1/",
+									"host": [
+										"{{profile}}1"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "jwt",
+						"jwt": [
+							{
+								"key": "header",
+								"value": "{JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQwMzc5NDA2LCJpYXQiOjE3NDAzNzc2MDYsImp0aSI6ImE4MGEzMDNiZDA0YTQ3Mjg4MjQ5MzZiNTU2N2UwODc4IiwidXNlcl9pZCI6MTB9.vvpiEEBYVSgY58pDFV_TRLaViCRjI-tSQY7hRAwx1jk}",
+								"type": "string"
+							},
+							{
+								"key": "algorithm",
+								"value": "HS256",
+								"type": "string"
+							},
+							{
+								"key": "isSecretBase64Encoded",
+								"value": false,
+								"type": "boolean"
+							},
+							{
+								"key": "payload",
+								"value": "{}",
+								"type": "string"
+							},
+							{
+								"key": "addTokenTo",
+								"value": "header",
+								"type": "string"
+							},
+							{
+								"key": "headerPrefix",
+								"value": "Bearer",
+								"type": "string"
+							},
+							{
+								"key": "queryParamKey",
+								"value": "token",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "jwt",
+				"jwt": [
+					{
+						"key": "algorithm",
+						"value": "HS256",
+						"type": "string"
+					},
+					{
+						"key": "isSecretBase64Encoded",
+						"value": false,
+						"type": "boolean"
+					},
+					{
+						"key": "payload",
+						"value": "{}",
+						"type": "string"
+					},
+					{
+						"key": "addTokenTo",
+						"value": "header",
+						"type": "string"
+					},
+					{
+						"key": "headerPrefix",
+						"value": "Bearer",
+						"type": "string"
+					},
+					{
+						"key": "queryParamKey",
+						"value": "token",
+						"type": "string"
+					},
+					{
+						"key": "header",
+						"value": "{}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "catalog",
+			"item": [
+				{
+					"name": "product",
+					"item": [
+						{
+							"name": "product-list",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT  {{jwt_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{catalog}}products/",
+									"host": [
+										"{{catalog}}products"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "product-create",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5NTM2NTQzLCJpYXQiOjE3Mzk1MzYyNDMsImp0aSI6ImY5OGFkZjliMTk2YTQ2OGQ4OGVmNzdhZTUyZjg1ZDE3IiwidXNlcl9pZCI6MTB9.c4rskh35kI2ZSN6u3R5okpZjdE3-AyHk7yAMsEZsPCE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT  {{jwt_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Pilot v7",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "Blue pen!",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "80",
+											"type": "text"
+										},
+										{
+											"key": "category",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "seller",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{catalog}}products/",
+									"host": [
+										"{{catalog}}products"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "product-update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT  {{jwt_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{catalog}}products/",
+									"host": [
+										"{{catalog}}products"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "product-delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT  {{jwt_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{catalog}}products/",
+									"host": [
+										"{{catalog}}products"
+									],
+									"path": [
+										""
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "catagory",
+					"item": [
+						{
+							"name": "catagory-list",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT  {{jwt_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{catalog}}catagory/",
+									"host": [
+										"{{catalog}}catagory"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "catagory-create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT  {{jwt_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "stationery",
+											"type": "text"
+										},
+										{
+											"key": "parent",
+											"value": "pen",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{catalog}}catagory/",
+									"host": [
+										"{{catalog}}catagory"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "catagory-update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT  {{jwt_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{catalog}}catagory/",
+									"host": [
+										"{{catalog}}catagory"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "catagory-delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT  {{jwt_token}}",
+										"type": "text"
+									}
+								]
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5ODgzNzAxLCJpYXQiOjE3Mzk4ODM0MDEsImp0aSI6IjBjYzlhYmZlNWFjYzRiMWRiYmJiNzcxOTZlYWZhYzJhIiwidXNlcl9pZCI6MTB9.FRm4CWatGPRHL3yHbO2249HpFn0wwMeYjE7b8tc3xaU",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "review",
+					"item": [
+						{
+							"name": "review-list",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT  {{jwt_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "review-create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT  {{jwt_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{catalog}}review/",
+									"host": [
+										"{{catalog}}review"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "review-update",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT  {{jwt_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{catalog}}review/",
+									"host": [
+										"{{catalog}}review"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "review-delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT  {{jwt_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{catalog}}review/",
+									"host": [
+										"{{catalog}}review"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "cart",
+			"item": [
+				{
+					"name": "cart-list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT  {{jwt_token}}",
+								"type": "text"
+							}
+						]
+					},
+					"response": []
+				},
+				{
+					"name": "cart-create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT  {{jwt_token}}",
+								"type": "text"
+							}
+						]
+					},
+					"response": []
+				},
+				{
+					"name": "cart-update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT  {{jwt_token}}",
+								"type": "text"
+							}
+						]
+					},
+					"response": []
+				},
+				{
+					"name": "cart-delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT  {{jwt_token}}",
+								"type": "text"
+							}
+						]
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "orders",
+			"item": [
+				{
+					"name": "orders-list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT  {{jwt_token}}",
+								"type": "text"
+							}
+						]
+					},
+					"response": []
+				},
+				{
+					"name": "orders-create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT  {{jwt_token}}",
+								"type": "text"
+							}
+						]
+					},
+					"response": []
+				},
+				{
+					"name": "orders-update",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT  {{jwt_token}}",
+								"type": "text"
+							}
+						]
+					},
+					"response": []
+				},
+				{
+					"name": "orders-delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT  {{jwt_token}}",
+								"type": "text"
+							}
+						]
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "payments",
+			"item": [
+				{
+					"name": "payments",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT  {{jwt_token}}",
+								"type": "text"
+							}
+						]
+					},
+					"response": []
+				},
+				{
+					"name": "checkout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT  {{jwt_token}}",
+								"type": "text"
+							}
+						]
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "promotions",
+			"item": [
+				{
+					"name": "discounts",
+					"item": [
+						{
+							"name": "Discounts-list",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT  {{jwt_token}}",
+										"type": "text"
+									}
+								]
+							},
+							"response": []
+						},
+						{
+							"name": "Discounts-create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT  {{jwt_token}}",
+										"type": "text"
+									}
+								]
+							},
+							"response": []
+						},
+						{
+							"name": "Discounts-update",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT  {{jwt_token}}",
+										"type": "text"
+									}
+								]
+							},
+							"response": []
+						},
+						{
+							"name": "Discounts-delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT  {{jwt_token}}",
+										"type": "text"
+									}
+								]
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "coupons",
+					"item": [
+						{
+							"name": "coupons-list",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT  {{jwt_token}}",
+										"type": "text"
+									}
+								]
+							},
+							"response": []
+						},
+						{
+							"name": "coupons-create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"value": "JWT  {{jwt_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "coupons-update",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "",
+										"value": "JWT  {{jwt_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "coupons-delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "",
+										"value": "JWT  {{jwt_token}}",
+										"type": "text"
+									}
+								]
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "offers",
+					"item": [
+						{
+							"name": "offers-list",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "offers-create",
+							"request": {
+								"method": "POST",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "offers-update",
+							"request": {
+								"method": "PATCH",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "offers-delete",
+							"request": {
+								"method": "DELETE",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "wishlist",
+			"item": [
+				{
+					"name": "wishlist-list",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "wishlist-create",
+					"request": {
+						"method": "POST",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "wishlist-update",
+					"request": {
+						"method": "PATCH",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "wishlist-delete",
+					"request": {
+						"method": "DELETE",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"// Retrieve your token from an environment variable named \"jwt_token\"",
+					"let token = pm.environment.get(\"jwt_token\");",
+					"",
+					"// Remove any existing Authorization header so we don’t duplicate",
+					"pm.request.headers.remove(\"Authorization\");",
+					"",
+					"// Add the JWT Authorization header",
+					"pm.request.headers.add({",
+					"  key: \"Authorization\",",
+					"  value: `JWT ${token}`",
+					"});",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
